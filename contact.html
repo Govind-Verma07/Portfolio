@@ -175,7 +175,30 @@
 
   <!-- Preloader -->
   <div id="preloader"></div>
+  <script>
+const form = document.getElementById("contact-form");
+const button = document.getElementById("submit-btn");
 
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  fetch("/", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    button.innerText = "Message Sent ✓";
+    button.style.backgroundColor = "green";
+    button.style.color = "white";
+  })
+  .catch(() => {
+    button.innerText = "Error! Try again";
+    button.style.backgroundColor = "red";
+  });
+});
+</script>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
